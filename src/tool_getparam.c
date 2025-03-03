@@ -2761,11 +2761,11 @@ ParameterError getparameter(const char *flag, /* f or -long-flag */
        * locations, even when hostname changed */
       config->unrestricted_auth = toggle;
       FALLTHROUGH();
-    case C_LOCATION_MODE: /* --location-mode */
-      err = parse_location_mode(global, config, nextarg);
-      break;
     case C_LOCATION: /* --location */
       config->followlocation = toggle; /* Follow Location: HTTP headers */
+      break;
+    case C_LOCATION_MODE: /* --location-mode */
+      err = parse_location_mode(global, config, nextarg);
       break;
     case C_MAX_TIME: /* --max-time */
       /* specified max time */
