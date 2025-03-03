@@ -186,6 +186,7 @@ static const struct LongShort aliases[]= {
   {"list-only",                  ARG_BOOL, 'l', C_LIST_ONLY},
   {"local-port",                 ARG_STRG, ' ', C_LOCAL_PORT},
   {"location",                   ARG_BOOL, 'L', C_LOCATION},
+  {"location-mode",              ARG_STRG, ' ', C_LOCATION_MODE},
   {"location-trusted",           ARG_BOOL, ' ', C_LOCATION_TRUSTED},
   {"login-options",              ARG_STRG, ' ', C_LOGIN_OPTIONS},
   {"mail-auth",                  ARG_STRG, ' ', C_MAIL_AUTH},
@@ -271,7 +272,6 @@ static const struct LongShort aliases[]= {
   {"remote-time",                ARG_BOOL, 'R', C_REMOTE_TIME},
   {"remove-on-error",            ARG_BOOL, ' ', C_REMOVE_ON_ERROR},
   {"request",                    ARG_STRG, 'X', C_REQUEST},
-  {"request-mode",               ARG_STRG, ' ', C_REQUEST_MODE},
   {"request-target",             ARG_STRG, ' ', C_REQUEST_TARGET},
   {"resolve",                    ARG_STRG, ' ', C_RESOLVE},
   {"retry",                      ARG_STRG, ' ', C_RETRY},
@@ -1623,9 +1623,9 @@ static ParameterError parse_time_cond(struct GlobalConfig *global,
   return err;
 }
 
-static ParameterError parse_request_mode(struct GlobalConfig *global,
-                                         struct OperationConfig *config,
-                                         const char *nextarg)
+static ParameterError parse_location_mode(struct GlobalConfig *global,
+                                          struct OperationConfig *config,
+                                          const char *nextarg)
 {
   if(!strcmp("all", nextarg))
     config->followlocation = CURLFOLLOW_ALL;
@@ -2703,9 +2703,6 @@ ParameterError getparameter(const char *flag, /* f or -long-flag */
     case C_GET: /* --get */
       config->use_httpget = toggle;
       break;
-    case C_REQUEST_MODE: /* --request-mode */
-      err = parse_request_mode(global, config, nextarg);
-      break;
     case C_REQUEST_TARGET: /* --request-target */
       err = getstr(&config->request_target, nextarg, DENY_BLANK);
       break;
@@ -2764,6 +2761,9 @@ ParameterError getparameter(const char *flag, /* f or -long-flag */
        * locations, even when hostname changed */
       config->unrestricted_auth = toggle;
       FALLTHROUGH();
+    case C_LOCATION_MODE: /* --location-mode */
+      err = parse_location_mode(global, config, nextarg);
+      break;
     case C_LOCATION: /* --location */
       config->followlocation = toggle; /* Follow Location: HTTP headers */
       break;

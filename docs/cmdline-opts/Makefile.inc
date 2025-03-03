@@ -151,6 +151,7 @@ DPAGES = \
   limit-rate.md \
   list-only.md \
   local-port.md \
+  location-mode.md \
   location-trusted.md \
   location.md \
   login-options.md \
@@ -239,7 +240,6 @@ DPAGES = \
   remote-name.md \
   remote-time.md \
   remove-on-error.md \
-  request-mode.md \
   request-target.md \
   request.md \
   resolve.md \

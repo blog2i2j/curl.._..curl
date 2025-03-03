@@ -1,7 +1,7 @@
 ---
 c: Copyright (C) Daniel Stenberg, <daniel@haxx.se>, et al.
 SPDX-License-Identifier: curl
-Long: request-mode
+Long: location-mode
 Arg: <mode>
 Help: Custom method redirect behavior
 Category: http
@@ -11,10 +11,10 @@ See-also:
   - request
   - location
 Example:
-  - -X POST -L --request-mode obey $URL
+  - -X POST -L --location-mode obey $URL
 ---
 
-# `--request-mode`
+# `--location-mode`
 
 Instructs curl how to do the custom request method set with --request when
 following redirects. The default mode is `all`. curl only follows redirects if

@@ -117,6 +117,7 @@
 --list-only (-l)                     4.0
 --local-port                         7.15.2
 --location (-L)                      4.9
+--location-mode                      8.14.0
 --location-trusted                   7.10.4
 --login-options                      7.34.0
 --mail-auth                          7.25.0
@@ -205,7 +206,6 @@
 --remote-time (-R)                   7.9
 --remove-on-error                    7.83.0
 --request (-X)                       6.0
---request-mode                       8.14.0
 --request-target                     7.55.0
 --resolve                            7.21.3
 --retry                              7.12.3
